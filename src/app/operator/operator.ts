@@ -7,4 +7,6 @@ export interface IOperator {
     firstName: string;
     lastName: string;
     assignedTask?: string;
+    currentState: string;
+    inBullpen: boolean;
 }

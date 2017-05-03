@@ -7,10 +7,8 @@ export class OperatorService {
 
   constructor() { }
 
-  getOperators(): Observable<IOperator[]>{
-    let subject = new Subject<IOperator[]>();
-    setTimeout(() => {subject.next(OPERATORS); subject.complete(); }, 100);
-    return subject;
+  getOperators(): IOperator[]{
+    return OPERATORS;
   }
 }
 
@@ -20,18 +18,24 @@ export class OperatorService {
         firstName: 'Anthony',
         lastName: 'Aguilar',
         operId: 112,
-        assignedTask: 'None'
+        assignedTask: 'None',
+        currentState: 'bullpen',
+        inBullpen: true
     },
     {
         firstName: 'Mike',
         lastName: 'Biddle',
         operId: 301,
-        assignedTask: 'None'
+        assignedTask: 'None',
+        currentState: 'bullpen',
+        inBullpen: false
     },
     {
         firstName: 'Gregory',
         lastName: 'Blanchard',
         operId: 202,
-        assignedTask: 'None'
+        assignedTask: 'None',
+        currentState: 'bullpen',
+        inBullpen: true
     }
 ]

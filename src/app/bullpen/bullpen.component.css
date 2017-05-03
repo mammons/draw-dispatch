@@ -1,0 +1,19 @@
+ul{
+    list-style-type: none;
+}
+
+.operators button{
+    margin: .2em;
+}
+
+.dropdown-menu li:hover{
+    cursor: pointer;
+}
+
+.tasks li{
+    cursor: pointer;
+}
+
+.tasks li:hover{
+    background-color: #DDD;
+}
