@@ -22,13 +22,15 @@ import { ActiveTaskComponent } from './active-task/active-task.component';
 import { InMemoryWebApiModule } from "angular-in-memory-web-api";
 import { InMemoryOperatorService } from "../in-memory-operator-service";
 import { LoggerService } from './logger/logger.service';
+import { TasksAssignedComponent } from './tasks-assigned/tasks-assigned.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BullpenComponent,
     NavComponent,
-    ActiveTaskComponent
+    ActiveTaskComponent,
+    TasksAssignedComponent
   ],
   imports: [
     BrowserModule,

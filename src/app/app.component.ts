@@ -42,15 +42,4 @@ export class AppComponent implements OnInit {
     this.logger.log("Assigning active operators based on state: " + this.activeTaskOperators);
   }
 
-  // addOperatorToActiveTasks(operator: Operator): void {
-  //   console.log(`Adding ${operator.firstName} to active task array`);
-  //   this.activeTaskOperators.push(operator);
-  //   this.bullpenOperators = this.bullpenOperators.filter(oper => oper !== operator);
-  // }
-
-  // returnOperatorToBullpen(operator: Operator): void{
-  //   console.log(`Returning ${operator.firstName} to bullpen`);
-  //   this.
-  // }
-
 }

@@ -1,0 +1,19 @@
+<div class="col-xs-6">
+    <div class="panel panel-default">
+    <div class="panel-heading">Tasks Assigned</div>
+    <div class="panel-body">
+      <div class="row">
+          <h4 class="col-xs-3">Operator</h4>
+          <h4 class="col-xs-3">Graphite</h4>
+          <h4 class="col-xs-3">Zirconium</h4>
+          <h4 class="col-xs-3">Other</h4>
+      </div>
+        <div class="row" *ngFor="let operator of operators">
+          <span class="col-xs-3">{{operator.firstName}} {{operator.lastName}}</span>
+          <span class="col-xs-3">{{operator.graphiteStarts}}</span>
+          <span class="col-xs-3">{{operator.zircStarts}}</span>
+          <span class="col-xs-3">{{operator.otherTasks}}</span>
+          </div>
+    </div>
+  </div>
+</div>

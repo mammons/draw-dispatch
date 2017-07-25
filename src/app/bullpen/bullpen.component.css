@@ -1,11 +1,3 @@
-.bullpen{
-    min-height: 500px;
-}
-
-ul{
-    list-style-type: none;
-}
-
 .operators button{
     margin: .2em;
 }

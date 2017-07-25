@@ -12,6 +12,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.breakStart,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
+                graphiteStarts: 3,
+                zircStarts: 1,
+                otherTasks: 8,
                 state: State.active
             },
             {
@@ -21,6 +24,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.none,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 4,
+                otherTasks: 3,
                 state: State.bullpen
             },
             {
@@ -30,6 +36,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.cutAndSet,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 1,
+                otherTasks: 6,
                 state: State.active
             },
             {
@@ -39,6 +48,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.none,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 1,
+                otherTasks: 6,
                 state: State.bullpen
             },
             {
@@ -48,6 +60,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.none,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 1,
+                otherTasks: 6,
                 state: State.bullpen
             },
             {
@@ -57,6 +72,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.none,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 1,
+                otherTasks: 6,
                 state: State.bullpen
             }
         ];
