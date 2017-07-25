@@ -1,5 +1,5 @@
 export class Tower {
-    public activeTowers = [
+    activeTowers = [
         '349',
         '350',
         '351',

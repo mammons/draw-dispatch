@@ -1,4 +1,5 @@
 import { Task } from "../task/task";
+import { State } from "app/operator/state";
 
 
 
@@ -7,6 +8,7 @@ export interface IOperator {
     firstName: string;
     lastName: string;
     assignedTask?: string;
-    currentState: string;
-    inBullpen: boolean;
+    state: number;
 }
+
+

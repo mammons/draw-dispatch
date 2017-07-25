@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from "rxjs/RX";
+import { Http, Headers } from "@angular/http";
+
+import { Observable } from "rxjs/Observable";
 import { IOperator } from "./operator";
+import { LoggerService } from "../logger/logger.service";
 
 @Injectable()
 export class OperatorService {
+    bullpenOperators: IOperator[];
+    activeTaskOperators: IOperator[];
+    private operatorsUrl = 'api/operators';
+    private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor() { }
+    constructor(
+        private logger: LoggerService,
+        private http: Http) { }
 
-  getOperators(): IOperator[]{
-    return OPERATORS;
+    getBullpenOperators(): Observable<IOperator[]> {
+        return
+    }
+
+    getOperators(): Observable<any> {
+        this.logger.log("Getting all operators ...");
+
+        return this.http.get(this.operatorsUrl)
+        .map(response => response.json().data as IOperator[])
+        .do(operators => this.logger.log(`Got ${operators.length} operators`))
+        .catch(error => this.handleError(error));
+    }
+
+  private handleError(error: any): Observable<any> {
+    this.logger.log(`An error occurred: ${error}`);
+    // re-throw user-facing message
+    return Observable.throw('Something bad happened; please check the console');
   }
+
 }
 
 
-    const OPERATORS = [
-    {
-        firstName: 'Anthony',
-        lastName: 'Aguilar',
-        operId: 112,
-        assignedTask: 'None',
-        currentState: 'bullpen',
-        inBullpen: true
-    },
-    {
-        firstName: 'Mike',
-        lastName: 'Biddle',
-        operId: 301,
-        assignedTask: 'None',
-        currentState: 'bullpen',
-        inBullpen: false
-    },
-    {
-        firstName: 'Gregory',
-        lastName: 'Blanchard',
-        operId: 202,
-        assignedTask: 'None',
-        currentState: 'bullpen',
-        inBullpen: true
-    }
-]
+

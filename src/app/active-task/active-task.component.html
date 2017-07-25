@@ -1,0 +1,20 @@
+<div class="col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Active Tasks</div>
+    <div class="panel-body">
+      <ul class="operators">
+        <li *ngFor="let operator of activeTaskOperators">
+          <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" id="{{operator.operId}}" class="btn btn-default dropdown-toggle">
+              {{operator.firstName}} {{operator.lastName}} <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem"><a class="dropdown-item" (click)="completeTask(operator)">Complete Task</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="cancelTask(operator)">Cancel Task</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -17,12 +17,18 @@ import { BullpenComponent } from './bullpen/bullpen.component';
 import { OperatorService } from './operator/operator.service';
 import { NavComponent } from './nav/nav.component';
 import { TaskService } from './task/task.service';
+import { ActiveTaskComponent } from './active-task/active-task.component';
+
+import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { InMemoryOperatorService } from "../in-memory-operator-service";
+import { LoggerService } from './logger/logger.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     BullpenComponent,
-    NavComponent
+    NavComponent,
+    ActiveTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +39,10 @@ import { TaskService } from './task/task.service';
     MaterialModule,
     FlexLayoutModule,
     BsDropdownModule.forRoot(),
-    ModalModule
+    ModalModule,
+    InMemoryWebApiModule.forRoot(InMemoryOperatorService)
   ],
-  providers: [OperatorService, TaskService],
+  providers: [OperatorService, TaskService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

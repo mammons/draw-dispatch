@@ -1,10 +1,10 @@
-<div class="col-md-4">
+<div class="col-md-3">
   <div class="panel panel-default">
     <div class="panel-heading">Bullpen</div>
     <div class="panel-body">
       <ul class="operators">
-        <li *ngFor="let operator of operators">
-          <div *ngIf="operator.inBullpen" class="btn-group" dropdown>
+        <li *ngFor="let operator of bullpenOperators">
+          <div class="btn-group" dropdown>
             <button dropdownToggle type="button" id="{{operator.operId}}" class="btn btn-default dropdown-toggle">
               {{operator.firstName}} {{operator.lastName}} <span class="caret"></span>
             </button>

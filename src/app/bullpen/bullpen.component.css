@@ -1,3 +1,7 @@
+.bullpen{
+    min-height: 500px;
+}
+
 ul{
     list-style-type: none;
 }
@@ -16,4 +20,8 @@ ul{
 
 .tasks li:hover{
     background-color: #DDD;
+}
+
+.panel-body{
+    min-height: 300px;
 }
