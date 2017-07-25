@@ -1,5 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IOperator } from "../operator/operator";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Operator } from "../operator/operator";
+import { OperatorService } from "../operator/operator.service";
+import { Task } from "../task/task";
+import { LoggerService } from "../logger/logger.service";
+import { State } from "../operator/state";
 
 @Component({
   selector: 'dd-active-task',
@@ -7,29 +11,45 @@ import { IOperator } from "../operator/operator";
   styleUrls: ['./active-task.component.css']
 })
 export class ActiveTaskComponent implements OnInit {
-  @Input() activeTaskOperators: IOperator[];
-  selectedOperator: IOperator;
+  @Input() activeTaskOperators: Operator[];
+  @Output() taskCancelOrComplete = new EventEmitter();
+  selectedOperator: Operator;
 
-  constructor() { }
+  constructor(private operatorService: OperatorService,
+              private logger: LoggerService) { }
 
   ngOnInit() {
   }
 
-  completeTask(operator: IOperator): void{
+  completeTask(result: string): void{
+    this.selectedOperator.taskResult = result;
+    this.selectedOperator.taskStatus = Task.statuses.complete;
+    this.operatorService.completeTaskForOperator(this.selectedOperator).subscribe(
+      () => this.taskCancelOrComplete.emit(this.selectedOperator),
+      (errorMsg: string) => this.logger.log(`This is the UI error ${errorMsg}`)
+    );    
+  }
+
+  //TODO get string from modal that's not in yet
+  targetForCompleteTask(operator: Operator): void{
     this.selectedOperator = operator;
-    console.log(`Completing task for ${operator.firstName}`);
-    this.selectedOperator.assignedTask = "None";
-    
+    this.logger.log(`Completing task for ${operator.firstName}`);
+    this.completeTask("Good Fiber");
   }
 
-  cancelTask(operator: IOperator): void{
-    this.selectedOperator.assignedTask = "None";
-    console.log(`Cancelling task for ${operator.firstName}`);
-    this.activeTaskOperators.filter(oper => oper.assignedTask !== "None");
+  targetForCancelTask(operator: Operator): void{
+    this.selectedOperator = operator;
+    this.logger.log(`Cancelling task for ${operator.firstName}`);
+    this.cancelTask();
   }
 
-  returnToBullpen(operator: IOperator): void{
-    this.activeTaskOperators = this.activeTaskOperators.filter(oper => oper.assignedTask !== "None");
+  cancelTask(){
+    this.selectedOperator.taskResult = Task.results.cancelled;
+    this.taskCancelOrComplete.emit(this.selectedOperator);
+    this.operatorService.cancelTaskForOperator(this.selectedOperator).subscribe(
+      () => this.taskCancelOrComplete.emit(this.selectedOperator),
+      (errorMsg: string) => this.logger.log(`This is the UI error ${errorMsg}`)
+    );    
   }
 
 }

@@ -3,11 +3,13 @@ import { State } from "app/operator/state";
 
 
 
-export interface IOperator {
+export class Operator {
     operId: number;
     firstName: string;
     lastName: string;
     assignedTask?: string;
+    taskStatus?: string;
+    taskResult?: string;
     state: number;
 }
 

@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">Bullpen</div>
     <div class="panel-body">
@@ -9,7 +9,7 @@
               {{operator.firstName}} {{operator.lastName}} <span class="caret"></span>
             </button>
             <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" (click)="target(operator)">Assign Task</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="targetForTask(operator)">Assign Task</a></li>
               <li role="menuitem"><a class="dropdown-item" (click)="removeOperator(operator)">Remove from Bullpen</a></li>
             </ul>
           </div>

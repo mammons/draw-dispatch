@@ -1,28 +1,36 @@
 export class Task {
-    public tasks = ['Cut & set ink',
-        'Start',
-        'Break start',
-        'Dancer break',
-        'Catch',
-        'Re-drop',
-        'Graphite Ink',
-        'Graphite Spool',
-        'Cleaning',
-        'Shift break',
-        'Break',
-        'Lunch',
-        'Other'
-    ];
+    static tasks = {
+        none: 'None',
+        cutAndSet: 'Cut & Set Ink',
+        start: 'Start',
+        breakStart: 'Break start',
+        dancerBreak: 'Dancer break',
+        catch: 'Catch',
+        reDrop: 'Re-drop',
+        graphiteInk: 'Graphite Ink',
+        graphiteSpool: 'Graphite Spool',
+        cleaning: 'Cleaning',
+        shiftBreak: 'Shift break',
+        break: 'Break',
+        lunch: 'Lunch',
+        other: 'Other'
+    };
 
-    public statuses = ['COMP', 'CNCL'];
+    static statuses = {
+        none: 'None',
+        complete: 'COMP',
+        cancel: 'CNCL'
+    };
 
-    public taskResults =[
-        'Good fiber',
-        'Break before good fiber',
-        'Jammed die',
-        'Burn out',
-        'Tower problem',
-        'Blown UV',
-        'Cancelled',
-        'Other'];
+    static results = {
+        none: 'None',
+        goodFiber: 'Good fiber',
+        breakBeforeGoodFiber: 'Break before good fiber',
+        jammedDie: 'Jammed die',
+        burnOut: 'Burn out',
+        towerProblem: 'Tower problem',
+        blownUV: 'Blown UV',
+        cancelled: 'Cancelled',
+        other: 'Other'
+    };
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { OperatorService } from "./operator/operator.service";
-import { IOperator } from "./operator/operator";
+import { Operator } from "./operator/operator";
 import { State } from "./operator/state";
 
 import { Observable } from "rxjs/Observable";
@@ -13,16 +13,15 @@ import { LoggerService } from "app/logger/logger.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  operators: IOperator[];
-  activeTaskOperators: IOperator[] = [];
-  bullpenOperators: IOperator[];
+  operators: Operator[];
+  activeTaskOperators: Operator[] = [];
+  bullpenOperators: Operator[];
 
   constructor(private operatorService: OperatorService,
     private logger: LoggerService) { }
 
   ngOnInit() {
     this.getOperators();
-
   }
 
 
@@ -35,19 +34,23 @@ export class AppComponent implements OnInit {
       })
   }
 
-  assignOperators() {
-    this.logger.log("Assigning operators based on inBullpen flag");
-    this.bullpenOperators = this.operators.filter(bpOper => {
-      bpOper['state'] == State.bullpen
-      this.logger.log(bpOper.toString);
-    });
-
+  assignOperators() {    
+    this.bullpenOperators = this.operators.filter(bpOper => bpOper['state'] == State.bullpen);     
+    this.logger.log("Assigning bullpen operators based on state: " + this.bullpenOperators);
+    
+    this.activeTaskOperators = this.operators.filter(atOper => atOper['state'] == State.active);
+    this.logger.log("Assigning active operators based on state: " + this.activeTaskOperators);
   }
 
-  addOperatorToActiveTasks(operator: IOperator): void {
-    console.log(`Adding ${operator.firstName} to active task array`);
-    this.activeTaskOperators.push(operator);
-    this.bullpenOperators = this.bullpenOperators.filter(oper => oper !== operator);
-  }
+  // addOperatorToActiveTasks(operator: Operator): void {
+  //   console.log(`Adding ${operator.firstName} to active task array`);
+  //   this.activeTaskOperators.push(operator);
+  //   this.bullpenOperators = this.bullpenOperators.filter(oper => oper !== operator);
+  // }
+
+  // returnOperatorToBullpen(operator: Operator): void{
+  //   console.log(`Returning ${operator.firstName} to bullpen`);
+  //   this.
+  // }
 
 }

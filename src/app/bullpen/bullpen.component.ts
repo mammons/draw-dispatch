@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { OperatorService } from "../operator/operator.service";
-import { IOperator } from "../operator/operator";
+import { Operator } from "../operator/operator";
 import { ModalDirective } from "ngx-bootstrap/modal";
 import { Task } from "../task/task";
 import { TaskService } from "../task/task.service";
 import { Observable } from "rxjs/RX";
 import "rxjs/add/operator/map";
 import { LoggerService } from "app/logger/logger.service";
+
+import { State } from "../operator/state";
 
 @Component({
   selector: 'dd-bullpen',
@@ -15,11 +17,10 @@ import { LoggerService } from "app/logger/logger.service";
 })
 export class BullpenComponent implements OnInit {
   @ViewChild('tasksModal') public tasksModal: ModalDirective;
-  @Input() bullpenOperators: IOperator[];
+  @Input() bullpenOperators: Operator[];
   @Output() taskClick = new EventEmitter();
-  operatorPool: IOperator[];
   tasks: string[];
-  selectedOperator: IOperator;
+  selectedOperator: Operator;
   
 
   constructor(private operatorService: OperatorService,
@@ -27,27 +28,16 @@ export class BullpenComponent implements OnInit {
               private logger: LoggerService) { }
 
   ngOnInit() {
-    this.getOperators();
     this.tasks = this.taskService.getTasks();
   }
 
-  getOperators(){
-    this.logger.log("Getting operators...");
-
-    this.operatorService.getOperators().subscribe(
-      opers => {
-        this.bullpenOperators = opers;
-      }
-    )
-  }
-
-  target(operator: IOperator): void{
+  targetForTask(operator: Operator): void{
     console.log(`Assigning task to ${operator.firstName}`);
     this.selectedOperator = operator;
     this.tasksModal.show();
   }
 
-  removeOperator(operator: IOperator): void{
+  removeOperator(operator: Operator): void{
     console.log(`Removing operator ${operator.firstName}`);
     this.selectedOperator = operator;
     this.bullpenOperators = this.bullpenOperators.filter(o => o !== this.selectedOperator);
@@ -59,9 +49,13 @@ export class BullpenComponent implements OnInit {
 
   assignTaskToSelectedOperator(task: string): void{
     this.selectedOperator.assignedTask = task;
+    this.selectedOperator.state = State.active;
     this.hideTasksModal();
-    this.taskClick.emit(this.selectedOperator);
-    console.log(`${this.selectedOperator.firstName} was assigned the task ${this.selectedOperator.assignedTask}`);
+    
+    this.operatorService.assignTaskToOperator(this.selectedOperator).subscribe(
+      () => this.taskClick.emit(this.selectedOperator),
+      (errorMsg: string) => this.logger.log(errorMsg)
+    );
   }
 
 }
