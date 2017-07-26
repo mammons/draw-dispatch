@@ -28,7 +28,9 @@ export class BullpenComponent implements OnInit {
               private logger: LoggerService) { }
 
   ngOnInit() {
-    this.tasks = this.taskService.getTasks();
+    this.taskService.getTasks().subscribe(
+      tasks => this.tasks = tasks
+    );
   }
 
   targetForTask(operator: Operator): void{

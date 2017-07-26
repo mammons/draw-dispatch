@@ -18,3 +18,25 @@
     </div>
   </div>
 </div>
+
+<!--This is the tasks modal that pops up when the Complete option is chosen-->
+
+<div bsModal #taskResultsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Select a Result</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideTaskResultsModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="tasks">
+          <li *ngFor="let result of taskResults" (click)="assignTaskResultToSelectedOperator(result)">
+            {{result}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

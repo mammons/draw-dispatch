@@ -12,9 +12,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 assignedTask: Task.tasks.breakStart,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
-                graphiteStarts: 3,
-                zircStarts: 1,
-                otherTasks: 8,
+                graphiteStarts: 0,
+                zircStarts: 0,
+                otherTasks: 0,
                 state: State.active
             },
             {
@@ -25,8 +25,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
-                zircStarts: 4,
-                otherTasks: 3,
+                zircStarts: 0,
+                otherTasks: 0,
                 state: State.bullpen
             },
             {
@@ -37,8 +37,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
-                zircStarts: 1,
-                otherTasks: 6,
+                zircStarts: 0,
+                otherTasks: 0,
                 state: State.active
             },
             {
@@ -49,8 +49,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
-                zircStarts: 1,
-                otherTasks: 6,
+                zircStarts: 0,
+                otherTasks: 0,
                 state: State.bullpen
             },
             {
@@ -61,8 +61,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
-                zircStarts: 1,
-                otherTasks: 6,
+                zircStarts: 0,
+                otherTasks: 0,
                 state: State.bullpen
             },
             {
@@ -73,12 +73,39 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
-                zircStarts: 1,
-                otherTasks: 6,
+                zircStarts: 0,
+                otherTasks: 0,
                 state: State.bullpen
             }
         ];
 
-        return { operators };
+        let tasks = ['Cut & set ink',
+            'Start',
+            'Break start',
+            'Dancer break',
+            'Catch',
+            'Re-drop',
+            'Graphite Ink',
+            'Graphite Spool',
+            'Cleaning',
+            'Shift break',
+            'Break',
+            'Lunch',
+            'Other'
+        ];
+
+        let taskResults = ['None',
+            'Good fiber',
+            'Break before good fiber',
+            'Jammed die',
+            'Burn out',
+            'Tower problem',
+            'Blown UV',
+            'Cancelled', 'Other'
+        ];
+
+        let taskLog = [];
+
+        return { operators, tasks, taskResults, taskLog };
     }
 }

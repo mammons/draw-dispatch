@@ -1,4 +1,5 @@
 <dd-nav></dd-nav>
-<dd-bullpen [bullpenOperators]="bullpenOperators" (taskClick)="assignOperators()"></dd-bullpen>
-<dd-active-task [activeTaskOperators]="activeTaskOperators" (taskCancelOrComplete)="assignOperators()"></dd-active-task>
+<dd-bullpen [bullpenOperators]="bullpenOperators" (taskClick)="updateOperators()"></dd-bullpen>
+<dd-active-task [activeTaskOperators]="activeTaskOperators" (taskCancelOrComplete)="closeOutOperator($event)"></dd-active-task>
 <dd-tasks-assigned [operators]="operators"></dd-tasks-assigned>
+<dd-task-log [taskLog]="taskLog"></dd-task-log>

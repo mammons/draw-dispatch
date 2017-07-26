@@ -21,10 +21,6 @@ export class OperatorService {
         private logger: LoggerService,
         private http: Http) { }
 
-    getBullpenOperators(): Observable<Operator[]> {
-        return
-    }
-
     getOperators(): Observable<any> {
         this.logger.log("Getting all operators ...");
 
@@ -47,7 +43,7 @@ export class OperatorService {
         return this.http.post(this.operatorsUrl, operator, this.options)
         .do(response => {
             this.logger.log(`Completed ${operator.assignedTask} for ${operator.firstName}`);
-            this.resetOperatorAfterCompleteOrCancel(operator);
+            this.incrementTaskCount(operator);
         })
         .catch(error => this.handleError(error));
     }
@@ -67,9 +63,20 @@ export class OperatorService {
         return this.http.post(this.operatorsUrl, operator, this.options)
         .do(response => {
             this.logger.log(`Cancelled task ${operator.assignedTask} for ${operator.firstName}`);
-            this.resetOperatorAfterCompleteOrCancel(operator);
         })
         .catch(error => this.handleError(error));
+    }
+
+    incrementTaskCount(operator: Operator){
+        if(operator.assignedTask == Task.tasks.graphiteSpool){
+            operator.graphiteStarts++;
+        }
+        else if(operator.assignedTask == Task.tasks.start){
+            operator.zircStarts++;
+        }
+        else{
+            operator.otherTasks++;
+        }
     }
 
     private handleError(error: any): Observable<any> {

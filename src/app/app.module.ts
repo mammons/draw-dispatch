@@ -23,6 +23,7 @@ import { InMemoryWebApiModule } from "angular-in-memory-web-api";
 import { InMemoryOperatorService } from "../in-memory-operator-service";
 import { LoggerService } from './logger/logger.service';
 import { TasksAssignedComponent } from './tasks-assigned/tasks-assigned.component';
+import { TaskLogComponent } from './task-log/task-log.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TasksAssignedComponent } from './tasks-assigned/tasks-assigned.componen
     BullpenComponent,
     NavComponent,
     ActiveTaskComponent,
-    TasksAssignedComponent
+    TasksAssignedComponent,
+    TaskLogComponent
   ],
   imports: [
     BrowserModule,

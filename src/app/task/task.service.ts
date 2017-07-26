@@ -1,27 +1,68 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/Rx';
+
+import { Task } from "./task";
+import { LoggerService } from "../logger/logger.service";
+import { Operator } from "app/operator/operator";
 
 @Injectable()
 export class TaskService {
+  private tasksUrl = 'api/tasks';
+  private taskResultsUrl = 'api/taskResults';
+  private taskLogUrl = 'api/taskLog';
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private options = new RequestOptions({ headers: this.headers })
 
-  constructor() { }
+  constructor(
+    private http: Http,
+    private logger: LoggerService
+  ) { }
 
-  getTasks(): string[]{
-    return TASKS;
+  getTasks(): Observable<any> {
+    this.logger.log("Getting all tasks ...");
+
+    return this.http.get(this.tasksUrl)
+      .map(response => response.json().data as string[])
+      .do(tasks => this.logger.log(`Got ${tasks.length} tasks`))
+      .catch(error => this.handleError(error));
+  }
+
+  getTaskResults(): Observable<any> {
+    this.logger.log("Getting all task results...");
+
+    return this.http.get(this.taskResultsUrl)
+      .map(response => response.json().data as string[])
+      .do(taskResults => this.logger.log(`Got ${taskResults.length} task results`))
+      .catch(error => this.handleError(error));
+  }
+
+  updateTaskLog(operator: Operator): Observable<any> {
+    var body = {
+      name: `${operator.firstName} ${operator.lastName}`,
+      task: operator.assignedTask,
+      tower: '354',
+      status: operator.taskStatus,
+      result: operator.taskResult
+    }
+    this.logger.log(`Updating task log for ${operator.firstName} via Http`);
+    return this.http.post(this.taskLogUrl, body, this.options)
+      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(body)}`))      
+      .catch(error => this.handleError(error));
+  }
+
+  getTaskLog(): Observable<string[]>{
+      return this.http.get(this.taskLogUrl)
+      .map(response => response.json().data as string[])
+      .do(taskLog => this.logger.log(`Got ${taskLog.length} task logs`))
+      .catch(error => this.handleError(error));
+  }
+
+  private handleError(error: any): Observable<any> {
+    this.logger.log(`An error occurred: ${error}`);
+    // re-throw user-facing message
+    return Observable.throw('Something bad happened; please check the console');
   }
 
 }
-
-const TASKS = ['Cut & set ink',
-        'Start',
-        'Break start',
-        'Dancer break',
-        'Catch',
-        'Re-drop',
-        'Graphite Ink',
-        'Graphite Spool',
-        'Cleaning',
-        'Shift break',
-        'Break',
-        'Lunch',
-        'Other'
-    ];
