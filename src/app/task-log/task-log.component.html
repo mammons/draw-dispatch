@@ -2,8 +2,8 @@
   <div class="panel panel-default">
     <div class="panel-heading">Tasks Log</div>
     <div class="panel-body">
-      <div class="row container" *ngFor="let task of taskLog">
-        {{task.name}}, {{task.task}}, {{task.tower}}, {{task.status}}, {{task.result}}
+      <div class="row container" *ngFor="let task of taskLog; let i=index">
+       {{i+1}}. {{task.name}}, {{task.task}}, {{task.tower}}, {{task.status}}, {{task.result}}
       </div>
     </div>
   </div>

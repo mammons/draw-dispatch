@@ -17,8 +17,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 zircStarts: 0,
                 otherTasks: 0,
                 // state: State.active
-                // state: State.bullpen
-                state: State.available
+                state: State.bullpen
+                // state: State.available
             },
             {
                 firstName: 'Mike',
@@ -31,9 +31,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                // state: State.bullpen
                 // state: State.active
-                state: State.available
+                state: State.bullpen
+                // state: State.available
             },
             {
                 firstName: 'Gregory',
@@ -47,8 +47,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 zircStarts: 0,
                 otherTasks: 0,
                 // state: State.active
-                // state: State.bullpen
-                state: State.available
+                state: State.bullpen
+                // state: State.available
             },
             {
                 firstName: 'Will',
@@ -62,11 +62,11 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 zircStarts: 0,
                 otherTasks: 0,
                 // state: State.active
-                // state: State.bullpen
-                state: State.available
+                state: State.bullpen
+                // state: State.available
             },
             {
-                firstName: 'Turd',
+                firstName: 'Fergie',
                 lastName: 'Ferguson',
                 operId: 222,
                 assignedTask: Task.tasks.none,
@@ -77,8 +77,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 zircStarts: 0,
                 otherTasks: 0,
                 // state: State.active
-                // state: State.bullpen
-                state: State.available
+                state: State.bullpen
+                // state: State.available
             },
             {
                 firstName: 'Carl',
@@ -92,8 +92,8 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 zircStarts: 0,
                 otherTasks: 0,
                 // state: State.active
-                // state: State.bullpen
-                state: State.available
+                state: State.bullpen
+                // state: State.available
             },
             {
                 firstName: 'Bill',
@@ -107,8 +107,53 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 zircStarts: 0,
                 otherTasks: 0,
                 // state: State.active
-                // state: State.bullpen
-                state: State.available
+                state: State.bullpen
+                // state: State.available
+            },
+            {
+                firstName: 'Doug',
+                lastName: 'Billgie',
+                operId: 803,
+                assignedTask: Task.tasks.none,
+                assignedTower: 'None',
+                taskStatus: Task.statuses.none,
+                taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 0,
+                otherTasks: 0,
+                // state: State.active
+                state: State.bullpen
+                // state: State.available
+            },
+            {
+                firstName: 'John',
+                lastName: 'Bougie',
+                operId: 803,
+                assignedTask: Task.tasks.none,
+                assignedTower: 'None',
+                taskStatus: Task.statuses.none,
+                taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 0,
+                otherTasks: 0,
+                // state: State.active
+                state: State.bullpen
+                // state: State.available
+            },
+            {
+                firstName: 'Dabby',
+                lastName: 'McDab',
+                operId: 803,
+                assignedTask: Task.tasks.none,
+                assignedTower: 'None',
+                taskStatus: Task.statuses.none,
+                taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 0,
+                otherTasks: 0,
+                // state: State.active
+                state: State.bullpen
+                // state: State.available
             }
         ];
 

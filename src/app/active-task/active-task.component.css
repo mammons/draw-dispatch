@@ -2,6 +2,13 @@ ul{
     list-style-type: none;
 }
 
+.operators{
+        display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    flex: 1 1 0;
+}
+
 .operators button{
     margin: .2em;
 }
@@ -19,6 +26,7 @@ ul{
 }
 
 .panel-body{
+    display: flex;
     min-height: 300px;
-    min-width: 30%;
+    max-height: 300px;
 }

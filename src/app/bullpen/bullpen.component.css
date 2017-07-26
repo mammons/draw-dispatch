@@ -1,5 +1,6 @@
 .operators button{
     margin: .2em;
+    width: 175px;
 }
 
 .dropdown-menu li:hover{
@@ -15,5 +16,13 @@
 }
 
 .panel-body{
+    display: flex;
     min-height: 300px;
+    max-height: 300px;
+}
+
+.operators{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
 }

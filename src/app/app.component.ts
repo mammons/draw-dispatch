@@ -30,13 +30,15 @@ export class AppComponent implements OnInit {
 
   @ViewChild('operModal') public operModal: ModalDirective;
 
-  constructor(private operatorService: OperatorService,
+  constructor(
+    private operatorService: OperatorService,
     private logger: LoggerService,
     private taskService: TaskService) { }
 
   ngOnInit() {
     this.getOperators();
     this.getTaskData();
+    
   }
 
 
@@ -87,6 +89,7 @@ export class AppComponent implements OnInit {
       tasks => {
         this.taskLog = tasks;
         this.logger.log(`Got taskLog ${tasks}`);
+        localStorage.setItem('taskLog', JSON.stringify(this.taskLog));
       })
   }
 
