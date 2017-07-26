@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getOperators();
     this.getTaskData();
-    
   }
 
 
@@ -91,6 +90,11 @@ export class AppComponent implements OnInit {
         this.logger.log(`Got taskLog ${tasks}`);
         localStorage.setItem('taskLog', JSON.stringify(this.taskLog));
       })
+  }
+
+  clearBullpen(): void{
+    this.bullpenOperators.forEach(oper => oper.state = State.available);
+    this.updatePanels();
   }
 
   openModalToAddOperator(){

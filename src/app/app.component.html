@@ -1,6 +1,7 @@
 <dd-nav></dd-nav>
 <div>
     <button class="btn btn-default" (click)="openModalToAddOperator()">Add to Bullpen</button>
+    <button class="btn btn-default pull-right" (click)="clearBullpen()">Clear Bullpen</button>
 </div>
 <dd-bullpen [bullpenOperators]="bullpenOperators" [tasks]="tasks" [towers]="towers" (taskClick)="updatePanels()">
 </dd-bullpen>
