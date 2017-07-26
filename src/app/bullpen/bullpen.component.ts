@@ -60,6 +60,9 @@ export class BullpenComponent implements OnInit {
     );
   }
 
+  assignTowerToSelectedOperator(tower: string): void{
+  }
+
 }
 
 

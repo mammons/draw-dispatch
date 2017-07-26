@@ -34,27 +34,27 @@ export class AppComponent implements OnInit {
       .subscribe(
       opers => {
         this.operators = opers;
-        this.updateOperators();
+        this.updatePanels();
       })
   }
 
-  updateOperators() {    
-    this.bullpenOperators = this.operators.filter(bpOper => bpOper['state'] == State.bullpen);     
+  updatePanels() {
+    this.bullpenOperators = this.operators.filter(bpOper => bpOper['state'] == State.bullpen);
     this.logger.log("Assigning bullpen operators based on state: " + this.bullpenOperators);
-    
+
     this.activeTaskOperators = this.operators.filter(atOper => atOper['state'] == State.active);
     this.logger.log("Assigning active operators based on state: " + this.activeTaskOperators);
   }
 
-  closeOutOperator(operator: Operator): void{
+  closeOutOperator(operator: Operator): void {
     this.taskService.updateTaskLog(operator).subscribe();
     this.getTaskLog();
     this.operatorService.resetOperatorAfterCompleteOrCancel(operator);
-    this.updateOperators();
+    this.updatePanels();
   }
 
-  getTaskLog(): void{
-        this.taskService.getTaskLog()
+  getTaskLog(): void {
+    this.taskService.getTaskLog()
       .subscribe(
       tasks => {
         this.taskLog = tasks;

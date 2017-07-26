@@ -5,7 +5,8 @@ export class Operator {
     operId: number;
     firstName: string;
     lastName: string;
-    assignedTask?: string
+    assignedTask?: string;
+    assignedTower: string;
     taskStatus?: string;
     taskResult?: string;
     graphiteStarts?: number;

@@ -5,3 +5,7 @@ h4{
 span {
     text-align: center;
 }
+
+.panel{
+    min-height: 300px;
+}

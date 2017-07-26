@@ -10,6 +10,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 lastName: 'Aguilar',
                 operId: 112,
                 assignedTask: Task.tasks.breakStart,
+                assignedTower: 354,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
@@ -22,6 +23,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 lastName: 'Biddle',
                 operId: 301,
                 assignedTask: Task.tasks.none,
+                assignedTower: 353,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
@@ -34,6 +36,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 lastName: 'Blanchard',
                 operId: 202,
                 assignedTask: Task.tasks.cutAndSet,
+                assignedTower: 383,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
@@ -46,6 +49,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 lastName: 'Muschamp',
                 operId: 100,
                 assignedTask: Task.tasks.none,
+                assignedTower: 352,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
@@ -58,6 +62,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 lastName: 'Ferguson',
                 operId: 222,
                 assignedTask: Task.tasks.none,
+                assignedTower: 355,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
@@ -70,6 +75,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 lastName: 'Bougie',
                 operId: 696,
                 assignedTask: Task.tasks.none,
+                assignedTower: 357,
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
@@ -104,7 +110,195 @@ export class InMemoryOperatorService implements InMemoryDbService {
             'Cancelled', 'Other'
         ];
 
-        let taskLog = [];
+        let towers =   [
+                        'None',
+                        '349',
+                        '350',
+                        '351',
+                        '352',
+                        '353',
+                        '354',
+                        '355',
+                        '356',
+                        '357',
+                        '358',
+                        '359',
+                        '360',
+                        '361',
+                        '362',
+                        '363',
+                        '364',
+                        '365',
+                        '366',
+                        '367',
+                        '368',
+                        '369',
+                        '370',
+                        '371',
+                        '372',
+                        '373',
+                        '374',
+                        '375',
+                        '376',
+                        '377',
+                        '378',
+                        '379',
+                        '380',
+                        '381',
+                        '382',
+                        '383',
+                        '384'
+    ];
+
+        let taskLog = [
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+            {
+                name: "name",
+                task: "task",
+                tower: '354',
+                status: "status",
+                result: 'result'
+            },
+        ];
 
         return { operators, tasks, taskResults, taskLog };
     }
