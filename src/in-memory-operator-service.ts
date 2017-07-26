@@ -16,7 +16,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                state: State.active
+                // state: State.active
+                // state: State.bullpen
+                state: State.available
             },
             {
                 firstName: 'Mike',
@@ -29,7 +31,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                state: State.bullpen
+                // state: State.bullpen
+                // state: State.active
+                state: State.available
             },
             {
                 firstName: 'Gregory',
@@ -42,7 +46,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                state: State.active
+                // state: State.active
+                // state: State.bullpen
+                state: State.available
             },
             {
                 firstName: 'Will',
@@ -55,7 +61,9 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                state: State.bullpen
+                // state: State.active
+                // state: State.bullpen
+                state: State.available
             },
             {
                 firstName: 'Turd',
@@ -68,238 +76,111 @@ export class InMemoryOperatorService implements InMemoryDbService {
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                state: State.bullpen
+                // state: State.active
+                // state: State.bullpen
+                state: State.available
             },
             {
-                firstName: 'Bill',
-                lastName: 'Bougie',
-                operId: 696,
+                firstName: 'Carl',
+                lastName: 'Sagen',
+                operId: 411,
                 assignedTask: Task.tasks.none,
-                assignedTower: 357,
+                assignedTower: 'None',
                 taskStatus: Task.statuses.none,
                 taskResult: Task.results.none,
                 graphiteStarts: 0,
                 zircStarts: 0,
                 otherTasks: 0,
-                state: State.bullpen
+                // state: State.active
+                // state: State.bullpen
+                state: State.available
+            },
+            {
+                firstName: 'Bill',
+                lastName: 'Bougie',
+                operId: 803,
+                assignedTask: Task.tasks.none,
+                assignedTower: 'None',
+                taskStatus: Task.statuses.none,
+                taskResult: Task.results.none,
+                graphiteStarts: 0,
+                zircStarts: 0,
+                otherTasks: 0,
+                // state: State.active
+                // state: State.bullpen
+                state: State.available
             }
         ];
 
-        let tasks = ['Cut & set ink',
-            'Start',
-            'Break start',
-            'Dancer break',
-            'Catch',
-            'Re-drop',
-            'Graphite Ink',
-            'Graphite Spool',
-            'Cleaning',
-            'Shift break',
-            'Break',
-            'Lunch',
-            'Other'
-        ];
+        let tasksJson = [
+            {
+                tasks: ['Cut & set ink',
+                    'Start',
+                    'Break start',
+                    'Dancer break',
+                    'Catch',
+                    'Re-drop',
+                    'Graphite Ink',
+                    'Graphite Spool',
+                    'Cleaning',
+                    'Shift break',
+                    'Break',
+                    'Lunch',
+                    'Other'
+                ],
+                taskResults: ['None',
+                    'Good fiber',
+                    'Break before good fiber',
+                    'Jammed die',
+                    'Burn out',
+                    'Tower problem',
+                    'Blown UV',
+                    'Cancelled', 'Other'
+                ],
+                towers: [
+                    'None',
+                    '349',
+                    '350',
+                    '351',
+                    '352',
+                    '353',
+                    '354',
+                    '355',
+                    '356',
+                    '357',
+                    '358',
+                    '359',
+                    '360',
+                    '361',
+                    '362',
+                    '363',
+                    '364',
+                    '365',
+                    '366',
+                    '367',
+                    '368',
+                    '369',
+                    '370',
+                    '371',
+                    '372',
+                    '373',
+                    '374',
+                    '375',
+                    '376',
+                    '377',
+                    '378',
+                    '379',
+                    '380',
+                    '381',
+                    '382',
+                    '383',
+                    '384'
+                ]
+            }
+        ]
 
-        let taskResults = ['None',
-            'Good fiber',
-            'Break before good fiber',
-            'Jammed die',
-            'Burn out',
-            'Tower problem',
-            'Blown UV',
-            'Cancelled', 'Other'
-        ];
+        let taskLog = [];
 
-        let towers =   [
-                        'None',
-                        '349',
-                        '350',
-                        '351',
-                        '352',
-                        '353',
-                        '354',
-                        '355',
-                        '356',
-                        '357',
-                        '358',
-                        '359',
-                        '360',
-                        '361',
-                        '362',
-                        '363',
-                        '364',
-                        '365',
-                        '366',
-                        '367',
-                        '368',
-                        '369',
-                        '370',
-                        '371',
-                        '372',
-                        '373',
-                        '374',
-                        '375',
-                        '376',
-                        '377',
-                        '378',
-                        '379',
-                        '380',
-                        '381',
-                        '382',
-                        '383',
-                        '384'
-    ];
-
-        let taskLog = [
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-            {
-                name: "name",
-                task: "task",
-                tower: '354',
-                status: "status",
-                result: 'result'
-            },
-        ];
-
-        return { operators, tasks, taskResults, taskLog };
+        return { operators, tasksJson, taskLog };
     }
 }

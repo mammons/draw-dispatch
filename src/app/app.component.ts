@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ViewChild, OnInit } from '@angular/core';
 
 import { OperatorService } from "./operator/operator.service";
 import { Operator } from "./operator/operator";
@@ -8,6 +8,8 @@ import { TaskService } from "app/task/task.service";
 
 import { Observable } from "rxjs/Observable";
 
+import { ModalDirective } from "ngx-bootstrap/modal";
+
 
 @Component({
   selector: 'dd-root',
@@ -15,10 +17,18 @@ import { Observable } from "rxjs/Observable";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  operators: Operator[];
-  activeTaskOperators: Operator[] = [];
+  operatorPool: Operator[];
+  availableOperators: Operator[];
+  activeTaskOperators: Operator[];
   bullpenOperators: Operator[];
+  currentlyActiveOperators: Operator[];
+
+  tasks: string[];
+  taskResults: string[];
+  towers: string[];
   taskLog: string[];
+
+  @ViewChild('operModal') public operModal: ModalDirective;
 
   constructor(private operatorService: OperatorService,
     private logger: LoggerService,
@@ -26,6 +36,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getOperators();
+    this.getTaskData();
   }
 
 
@@ -33,17 +44,34 @@ export class AppComponent implements OnInit {
     this.operatorService.getOperators()
       .subscribe(
       opers => {
-        this.operators = opers;
+        this.operatorPool = opers;
         this.updatePanels();
       })
   }
 
+  getTaskData(){
+    this.taskService.getTaskData()
+    .subscribe(
+      response => {
+        this.tasks = response[0].tasks;
+        this.taskResults = response[0].taskResults;
+        this.towers = response[0].towers;
+      });
+  }
+
   updatePanels() {
-    this.bullpenOperators = this.operators.filter(bpOper => bpOper['state'] == State.bullpen);
+    this.bullpenOperators = this.operatorPool.filter(bpOper => bpOper['state'] == State.bullpen);
     this.logger.log("Assigning bullpen operators based on state: " + this.bullpenOperators);
 
-    this.activeTaskOperators = this.operators.filter(atOper => atOper['state'] == State.active);
+    this.activeTaskOperators = this.operatorPool.filter(atOper => atOper['state'] == State.active);
     this.logger.log("Assigning active operators based on state: " + this.activeTaskOperators);
+
+    this.currentlyActiveOperators = this.operatorPool.filter(caOper => caOper['state'] !== State.available);
+  }
+
+  toggleBullpenState(operator: Operator): void{
+    operator.state == State.available ? operator.state = State.bullpen : operator.state = State.available;
+    this.logger.log(`Toggle state of ${operator.firstName} : ${operator.state}`);
   }
 
   closeOutOperator(operator: Operator): void {
@@ -60,6 +88,16 @@ export class AppComponent implements OnInit {
         this.taskLog = tasks;
         this.logger.log(`Got taskLog ${tasks}`);
       })
+  }
+
+  openModalToAddOperator(){
+    this.availableOperators = this.operatorPool.filter(avail => avail['state'] == State.available);
+    this.operModal.show();
+  }
+
+  hideOperModal(){
+    this.operModal.hide();
+    this.updatePanels();
   }
 
 }

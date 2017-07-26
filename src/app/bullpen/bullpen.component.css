@@ -6,11 +6,11 @@
     cursor: pointer;
 }
 
-.tasks li{
+ .tasks li{
     cursor: pointer;
 }
 
-.tasks li:hover{
+ .tasks li:hover{
     background-color: #DDD;
 }
 

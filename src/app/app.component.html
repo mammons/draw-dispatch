@@ -1,5 +1,43 @@
 <dd-nav></dd-nav>
-<dd-bullpen [bullpenOperators]="bullpenOperators" (taskClick)="updatePanels()"></dd-bullpen>
-<dd-active-task [activeTaskOperators]="activeTaskOperators" (taskCancelOrComplete)="closeOutOperator($event)"></dd-active-task>
-<dd-tasks-assigned [operators]="operators"></dd-tasks-assigned>
+<div>
+    <button class="btn btn-default" (click)="openModalToAddOperator()">Add to Bullpen</button>
+</div>
+<dd-bullpen [bullpenOperators]="bullpenOperators" [tasks]="tasks" [towers]="towers" (taskClick)="updatePanels()">
+</dd-bullpen>
+
+<dd-active-task [activeTaskOperators]="activeTaskOperators" [taskResults]="taskResults" (taskCancelOrComplete)="closeOutOperator($event)">
+</dd-active-task>
+
+<dd-tasks-assigned [operators]="currentlyActiveOperators"></dd-tasks-assigned>
+
 <dd-task-log [taskLog]="taskLog"></dd-task-log>
+
+
+
+<!-- Modal to select operators to add to bullpen -->
+
+<div bsModal #operModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Select Operator(s)</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideOperModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let oper of availableOperators">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                    (change)="toggleBullpenState(oper)"/>
+                            {{oper.firstName}} {{oper.lastName}}
+                        </label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default" aria-label="Close" (click)="hideOperModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End of bullpen operator selection modal -->

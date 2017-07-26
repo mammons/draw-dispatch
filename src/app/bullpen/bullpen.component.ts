@@ -17,50 +17,63 @@ import { State } from "../operator/state";
 })
 export class BullpenComponent implements OnInit {
   @ViewChild('tasksModal') public tasksModal: ModalDirective;
+  @ViewChild('towerModal') public towerModal: ModalDirective;
   @Input() bullpenOperators: Operator[];
+  @Input() tasks: string[];
+  @Input() towers: string[];
   @Output() taskClick = new EventEmitter();
-  tasks: string[];
+
   selectedOperator: Operator;
-  
+
 
   constructor(private operatorService: OperatorService,
-              private taskService: TaskService,
-              private logger: LoggerService) { }
+    private taskService: TaskService,
+    private logger: LoggerService) { }
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe(
-      tasks => this.tasks = tasks
-    );
+
   }
 
-  targetForTask(operator: Operator): void{
+  targetForTask(operator: Operator): void {
     console.log(`Assigning task to ${operator.firstName}`);
     this.selectedOperator = operator;
     this.tasksModal.show();
   }
 
-  removeOperator(operator: Operator): void{
+  removeOperator(operator: Operator): void {
     console.log(`Removing operator ${operator.firstName}`);
     this.selectedOperator = operator;
-    this.bullpenOperators = this.bullpenOperators.filter(o => o !== this.selectedOperator);
+    this.selectedOperator.state = State.available;
+    this.taskClick.emit(this.selectedOperator);
   }
 
-  hideTasksModal(): void{
+  hideTasksModal(): void {
     this.tasksModal.hide();
   }
 
-  assignTaskToSelectedOperator(task: string): void{
+  hideTowerModal(): void {
+    this.towerModal.hide();
+  }
+
+  assignTaskToSelectedOperator(task: string): void {
     this.selectedOperator.assignedTask = task;
     this.selectedOperator.state = State.active;
     this.hideTasksModal();
-    
+    this.towerModal.show();
+  }
+
+  assignTowerToSelectedOperator(tower: string): void {
+    this.selectedOperator.assignedTower = tower;
+    this.hideTowerModal();
+    this.sendTask();
+  }
+
+
+  sendTask() {
     this.operatorService.assignTaskToOperator(this.selectedOperator).subscribe(
       () => this.taskClick.emit(this.selectedOperator),
       (errorMsg: string) => this.logger.log(errorMsg)
     );
-  }
-
-  assignTowerToSelectedOperator(tower: string): void{
   }
 
 }

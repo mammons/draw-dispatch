@@ -9,7 +9,7 @@ import { Operator } from "app/operator/operator";
 
 @Injectable()
 export class TaskService {
-  private tasksUrl = 'api/tasks';
+  private tasksUrl = 'api/tasksJson';
   private taskResultsUrl = 'api/taskResults';
   private taskLogUrl = 'api/taskLog';
   private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -20,12 +20,12 @@ export class TaskService {
     private logger: LoggerService
   ) { }
 
-  getTasks(): Observable<any> {
-    this.logger.log("Getting all tasks ...");
+  getTaskData(): Observable<any> {
+    this.logger.log("Getting all task data ...");
 
     return this.http.get(this.tasksUrl)
-      .map(response => response.json().data as string[])
-      .do(tasks => this.logger.log(`Got ${tasks.length} tasks`))
+      .map(response => response.json().data)
+      .do(tasks => this.logger.log(`Got task data`))
       .catch(error => this.handleError(error));
   }
 
@@ -42,7 +42,7 @@ export class TaskService {
     var body = {
       name: `${operator.firstName} ${operator.lastName}`,
       task: operator.assignedTask,
-      tower: '354',
+      tower: operator.assignedTower,
       status: operator.taskStatus,
       result: operator.taskResult
     }

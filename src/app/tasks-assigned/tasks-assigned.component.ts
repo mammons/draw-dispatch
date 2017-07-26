@@ -8,6 +8,7 @@ import { Operator } from "../operator/operator";
 })
 export class TasksAssignedComponent implements OnInit {
   @Input() operators: Operator[];
+  currentlyActiveOperators: Operator[];
 
   constructor() { }
 

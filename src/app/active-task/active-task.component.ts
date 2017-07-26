@@ -16,8 +16,8 @@ import { Observable } from "rxjs/Observable";
 export class ActiveTaskComponent implements OnInit {
   @ViewChild('taskResultsModal') public taskResultsModal: ModalDirective;
   @Input() activeTaskOperators: Operator[];
+  @Input() taskResults: string[];
   @Output() taskCancelOrComplete = new EventEmitter();
-  taskResults: string[];
   selectedOperator: Operator;
 
   constructor(private operatorService: OperatorService,
@@ -25,9 +25,9 @@ export class ActiveTaskComponent implements OnInit {
             private taskService: TaskService) { }
 
   ngOnInit() {
-    this.taskService.getTaskResults().subscribe(
-      taskResults => this.taskResults = taskResults
-    );
+    // this.taskService.getTaskResults().subscribe(
+    //   taskResults => this.taskResults = taskResults
+    // );
   }
 
   completeTask(result: string): void{

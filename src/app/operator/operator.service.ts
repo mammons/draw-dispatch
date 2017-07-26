@@ -51,8 +51,9 @@ export class OperatorService {
     resetOperatorAfterCompleteOrCancel(operator: Operator): void{
         this.logger.log(`Resetting ${operator}`);
         operator.assignedTask = Task.tasks.none;
+        operator.assignedTower = 'None';
         operator.taskResult = Task.results.none;
-        operator.taskStatus = Task.statuses.none;
+        operator.taskStatus = Task.statuses.none;        
         operator.state = State.bullpen;
         this.logger.log(`Reset ${operator}`);
     }

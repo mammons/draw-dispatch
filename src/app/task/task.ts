@@ -33,4 +33,10 @@ export class Task {
         cancelled: 'Cancelled',
         other: 'Other'
     };
+
+    dbTask ={
+        tasks: [],
+        results:[],
+        towers: []
+    }
 }
