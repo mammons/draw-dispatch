@@ -4,7 +4,7 @@ import { Operator } from "../operator/operator";
 import { ModalDirective } from "ngx-bootstrap/modal";
 import { Task } from "../task/task";
 import { TaskService } from "../task/task.service";
-import { Observable } from "rxjs/RX";
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import { LoggerService } from "app/logger/logger.service";
 
