@@ -26,3 +26,11 @@
     flex-flow: column;
     flex-wrap: wrap;
 }
+
+.modal-dialog{
+    overflow-y: initial;
+}
+.modal-body{
+    max-height: 500px;
+    overflow-y: auto;
+}
