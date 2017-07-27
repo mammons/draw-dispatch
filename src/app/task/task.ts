@@ -1,5 +1,11 @@
+import { Operator } from "../operator/operator";
+
 export class Task {
-    static tasks = {
+    id: number;
+    operator: Operator;
+    comment: string;
+
+        static tasks = {
         none: 'None',
         cutAndSet: 'Cut & Set Ink',
         start: 'Start',
@@ -33,10 +39,4 @@ export class Task {
         cancelled: 'Cancelled',
         other: 'Other'
     };
-
-    dbTask ={
-        tasks: [],
-        results:[],
-        towers: []
-    }
 }

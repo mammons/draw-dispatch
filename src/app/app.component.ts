@@ -3,6 +3,7 @@ import { Component,ViewChild, OnInit } from '@angular/core';
 import { OperatorService } from "./operator/operator.service";
 import { Operator } from "./operator/operator";
 import { State } from "./operator/state";
+import { Task } from "./task/task";
 import { LoggerService } from "app/logger/logger.service";
 import { TaskService } from "app/task/task.service";
 
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
   tasks: string[];
   taskResults: string[];
   towers: string[];
-  taskLog: string[];
+  taskLog: Task[];
 
   @ViewChild('operModal') public operModal: ModalDirective;
 
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit {
       response => {
         this.tasks = response[0].tasks;
         this.taskResults = response[0].taskResults;
-        this.towers = response[0].towers;
+        this.towers = response[0].towers.all;
       });
   }
 
@@ -76,7 +77,7 @@ export class AppComponent implements OnInit {
   }
 
   closeOutOperator(operator: Operator): void {
-    this.taskService.updateTaskLog(operator).subscribe();
+    this.taskService.addTaskLog(operator).subscribe();
     this.getTaskLog();
     this.operatorService.resetOperatorAfterCompleteOrCancel(operator);
     this.updatePanels();
@@ -87,8 +88,8 @@ export class AppComponent implements OnInit {
       .subscribe(
       tasks => {
         this.taskLog = tasks;
-        this.logger.log(`Got taskLog ${tasks}`);
-        localStorage.setItem('taskLog', JSON.stringify(this.taskLog));
+        //this.logger.log(`Got taskLog ${tasks}`);
+        //localStorage.setItem('taskLog', JSON.stringify(this.taskLog));
       })
   }
 

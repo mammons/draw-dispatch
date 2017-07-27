@@ -2,8 +2,35 @@
   <div class="panel panel-default">
     <div class="panel-heading">Tasks Log</div>
     <div class="panel-body">
-      <div class="row container" *ngFor="let task of taskLog; let i=index">
-       {{i+1}}. {{task.name}}, {{task.task}}, {{task.tower}}, {{task.status}}, {{task.result}}
+      <div class="row container" *ngFor="let task of taskLog; let i=index" (click)="openCommentModal(task)">
+        {{i+1}}. {{task.operator.firstName}} {{task.operator.lastName}}, {{task.operator.assignedTask}}, {{task.operator.assignedTower}},
+        {{task.operator.taskStatus}}, {{task.operator.taskResult}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #commentModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Add a comment</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideCommentModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="selectedTask">
+        <div>Name: {{selectedTask.operator.firstName}} {{selectedTask.operator.lastName}}</div>
+        <div>Task: {{selectedTask.operator.assignedTask}}</div>
+        <div>Tower: {{selectedTask.operator.tower}}</div>
+        <div>Result: {{selectedTask.operator.taskResult}}</div>
+        <div>Status: {{selectedTask.operator.taskStatus</div>
+        <div class="form-group">
+          <label class="label">Comment:</label>
+          <textarea [(ngModel)]="comment" cols="30" rows="10" class="form-control">{{selectedTask.comment}}</textarea>
+        </div>
+        <div>{{comment}}</div>
       </div>
     </div>
   </div>

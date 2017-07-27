@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { Operator } from "./operator";
 import { State } from "./state";
 import { Task } from "../task/task";
+import { Tower } from "../tower/tower";
 import { LoggerService } from "../logger/logger.service";
 
 @Injectable()
@@ -69,11 +70,15 @@ export class OperatorService {
     }
 
     incrementTaskCount(operator: Operator){
-        if(operator.assignedTask == Task.tasks.graphiteSpool){
-            operator.graphiteStarts++;
-        }
-        else if(operator.assignedTask == Task.tasks.start){
-            operator.zircStarts++;
+        let startArray = [Task.tasks.start, Task.tasks.breakStart, Task.tasks.reDrop] as string[];
+        let graphiteTowers = Tower.graphite;
+        if(startArray.includes(operator.assignedTask)){
+            if(graphiteTowers.includes(operator.assignedTower)){
+                operator.graphiteStarts++;
+            }
+            else{
+                operator.zircStarts++;
+            }
         }
         else{
             operator.otherTasks++;

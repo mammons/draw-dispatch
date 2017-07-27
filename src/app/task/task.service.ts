@@ -38,24 +38,28 @@ export class TaskService {
       .catch(error => this.handleError(error));
   }
 
-  updateTaskLog(operator: Operator): Observable<any> {
-    var body = {
-      name: `${operator.firstName} ${operator.lastName}`,
-      task: operator.assignedTask,
-      tower: operator.assignedTower,
-      status: operator.taskStatus,
-      result: operator.taskResult
+  addTaskLog(operator: Operator): Observable<any> {
+    let task = {
+      operator: operator,
+      comment: ""
     }
-    this.logger.log(`Updating task log for ${operator.firstName} via Http`);
-    return this.http.post(this.taskLogUrl, body, this.options)
-      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(body)}`))      
+    this.logger.log(`Adding task log for ${operator.firstName} via Http`);
+    return this.http.post(this.taskLogUrl, task, this.options)
+      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))      
       .catch(error => this.handleError(error));
   }
 
-  getTaskLog(): Observable<string[]>{
+  updateTaskLog(task: Task): Observable<any>{
+        this.logger.log(`Updating task log for ${task.id} via Http`);
+    return this.http.put(`${this.taskLogUrl}/${task.id}`, task, this.options)
+      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))      
+      .catch(error => this.handleError(error));
+  }
+
+  getTaskLog(): Observable<Task[]>{
       return this.http.get(this.taskLogUrl)
-      .map(response => response.json().data as string[])
-      .do(taskLog => this.logger.log(`Got ${taskLog.length} task logs`))
+      .map(response => response.json().data as Task[])
+      .do(taskLog => this.logger.log(`Got ${taskLog.length} task logs: ${JSON.stringify(taskLog)}`))
       .catch(error => this.handleError(error));
   }
 
