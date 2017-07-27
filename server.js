@@ -4,7 +4,7 @@ const path = require('path');
 
 console.log("In server.js");
 
-app.use(express.static(_dirname + '/dist'));
+app.use(express.static(__dirname + '/dist'));
 
 app.listen(process.env.PORT || 8080);
 
