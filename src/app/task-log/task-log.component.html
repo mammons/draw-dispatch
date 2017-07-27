@@ -23,11 +23,11 @@
       <div class="modal-body" *ngIf="selectedTask">
         <div>Name: {{selectedTask.operator.firstName}} {{selectedTask.operator.lastName}}</div>
         <div>Task: {{selectedTask.operator.assignedTask}}</div>
-        <div>Tower: {{selectedTask.operator.tower}}</div>
+        <div>Tower: {{selectedTask.operator.assignedTower}}</div>
         <div>Result: {{selectedTask.operator.taskResult}}</div>
-        <div>Status: {{selectedTask.operator.taskStatus</div>
+        <div>Status: {{selectedTask.operator.taskStatus}}</div>
         <div class="form-group">
-          <label class="label">Comment:</label>
+          <label>Comment:</label>
           <textarea [(ngModel)]="comment" cols="30" rows="10" class="form-control">{{selectedTask.comment}}</textarea>
         </div>
         <div>{{comment}}</div>

@@ -30,6 +30,8 @@ comment="";
 
   hideCommentModal(){
     this.commentModal.hide();
+    this.selectedTask.comment = this.comment;
+    console.log(`Modal just closed here's what came out of that ${JSON.stringify(this.selectedTask)}`);
   }
 
 }
