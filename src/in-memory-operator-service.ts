@@ -285,23 +285,23 @@ export class InMemoryOperatorService implements InMemoryDbService {
         ];
 
         let taskLog = [
-            {operator:{
-                firstName: 'Anthony',
-                lastName: 'Aguilar',
-                operId: 112,
-                assignedTask: Task.tasks.breakStart,
-                assignedTower: 354,
-                taskStatus: Task.statuses.complete,
-                taskResult: Task.results.goodFiber,
-                graphiteStarts: 0,
-                zircStarts: 0,
-                otherTasks: 0,
-                // state: State.active
-                // state: State.bullpen
-                state: State.available},
-                comment: "",
-                id:1
-            }
+            // {operator:{
+            //     firstName: 'Anthony',
+            //     lastName: 'Aguilar',
+            //     operId: 112,
+            //     assignedTask: Task.tasks.breakStart,
+            //     assignedTower: 354,
+            //     taskStatus: Task.statuses.complete,
+            //     taskResult: Task.results.goodFiber,
+            //     graphiteStarts: 0,
+            //     zircStarts: 0,
+            //     otherTasks: 0,
+            //     // state: State.active
+            //     // state: State.bullpen
+            //     state: State.available},
+            //     comment: "",
+            //     id:1
+            // }
         ];
 
         return { operators, tasksJson, taskLog };
