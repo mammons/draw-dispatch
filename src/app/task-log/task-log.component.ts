@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { TaskService } from "../task/task.service";
-import { Observable } from "rxjs/Observable";
-import { Task } from "../task/task";
-import { ModalDirective } from "ngx-bootstrap/modal";
-import { LoggerService } from "app/logger/logger.service";
+import { TaskService } from '../task/task.service';
+import { Observable } from 'rxjs/Observable';
+import { Task } from '../task/task';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { LoggerService } from 'app/logger/logger.service';
 
 @Component({
   selector: 'dd-task-log',
@@ -12,9 +12,9 @@ import { LoggerService } from "app/logger/logger.service";
 })
 export class TaskLogComponent implements OnInit {
 @Input() taskLog: Task[];
-@ViewChild('commentModal') public commentModal: ModalDirective
+@ViewChild('commentModal') public commentModal: ModalDirective;
 selectedTask: Task;
-comment="";
+comment= '';
 disableCommentEntry = true;
 editClicked = false;
 
@@ -28,26 +28,26 @@ editClicked = false;
     );
   }
 
-  openCommentModal(task: Task){
+  openCommentModal(task: Task) {
     this.selectedTask = task;
-    this.logger.log(`This is the task from the modal ${JSON.stringify(task)}`)
+    this.logger.log(`This is the task from the modal ${JSON.stringify(task)}`);
     this.commentModal.show();
   }
 
-  hideCommentModal(){
+  hideCommentModal() {
     this.commentModal.hide();
     this.disableCommentEntry = true;
     this.selectedTask.comment = this.comment;
     this.saveComment();
   }
 
-  toggleEdit(){
+  toggleEdit() {
     this.disableCommentEntry = false;
     this.editClicked = true;
   }
 
-  saveComment(){
-    if(this.editClicked){
+  saveComment() {
+    if (this.editClicked) {
       this.taskService.updateTaskLog(this.selectedTask).subscribe(
       (response => this.logger.log(`Saved comment`)
     ),
