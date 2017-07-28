@@ -4,3 +4,7 @@
     overflow-x: hidden;
     width: 100%;
 }
+
+.log-entry:hover{
+    cursor: pointer;
+}

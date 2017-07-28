@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
       .subscribe(
       tasks => {
         this.taskLog = tasks;
-        //this.logger.log(`Got taskLog ${tasks}`);
+        this.logger.log(`Got taskLog ${JSON.stringify(tasks)}`);
         //localStorage.setItem('taskLog', JSON.stringify(this.taskLog));
       })
   }

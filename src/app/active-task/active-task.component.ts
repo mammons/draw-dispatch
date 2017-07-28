@@ -25,9 +25,6 @@ export class ActiveTaskComponent implements OnInit {
             private taskService: TaskService) { }
 
   ngOnInit() {
-    // this.taskService.getTaskResults().subscribe(
-    //   taskResults => this.taskResults = taskResults
-    // );
   }
 
   completeTask(result: string): void{
