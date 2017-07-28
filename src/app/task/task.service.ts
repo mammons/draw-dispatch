@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import { Task } from "./task";
-import { LoggerService } from "../logger/logger.service";
-import { Operator } from "app/operator/operator";
+import { Task } from './task';
+import { LoggerService } from '../logger/logger.service';
+import { Operator } from 'app/operator/operator';
 
 @Injectable()
 export class TaskService {
@@ -21,7 +21,7 @@ export class TaskService {
   ) { }
 
   getTaskData(): Observable<any> {
-    this.logger.log("Getting all task data ...");
+    this.logger.log('Getting all task data ...');
 
     return this.http.get(this.tasksUrl)
       .map(response => response.json().data)
@@ -30,7 +30,7 @@ export class TaskService {
   }
 
   getTaskResults(): Observable<any> {
-    this.logger.log("Getting all task results...");
+    this.logger.log('Getting all task results...');
 
     return this.http.get(this.taskResultsUrl)
       .map(response => response.json().data as string[])
@@ -41,18 +41,18 @@ export class TaskService {
   addTaskLog(operator: Operator): Observable<any> {
     let task = {
       operator: operator,
-      comment: ""
+      comment: ''
     }
     this.logger.log(`Adding task log for ${operator.firstName} via Http`);
     return this.http.post(this.taskLogUrl, task, this.options)
-      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))      
+      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))
       .catch(error => this.handleError(error));
   }
 
   updateTaskLog(task: Task): Observable<any>{
         this.logger.log(`Updating task log for ${task.id} via Http`);
     return this.http.put(`${this.taskLogUrl}/${task.id}`, task, this.options)
-      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))      
+      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))
       .catch(error => this.handleError(error));
   }
 

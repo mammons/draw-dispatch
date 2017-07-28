@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { OperatorService } from "../operator/operator.service";
-import { Operator } from "../operator/operator";
-import { ModalDirective } from "ngx-bootstrap/modal";
-import { Task } from "../task/task";
-import { TaskService } from "../task/task.service";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import { LoggerService } from "app/logger/logger.service";
+import { OperatorService } from '../operator/operator.service';
+import { Operator } from '../operator/operator';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Task } from '../task/task';
+import { TaskService } from '../task/task.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import { LoggerService } from 'app/logger/logger.service';
 
-import { State } from "../operator/state";
+import { State } from '../operator/state';
 
 @Component({
   selector: 'dd-bullpen',
