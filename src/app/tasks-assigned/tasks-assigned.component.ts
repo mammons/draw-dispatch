@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Operator } from "../operator/operator";
+import { Operator } from '../operator/operator';
 
 @Component({
   selector: 'dd-tasks-assigned',

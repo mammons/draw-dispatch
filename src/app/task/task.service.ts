@@ -45,19 +45,20 @@ export class TaskService {
     }
     this.logger.log(`Adding task log for ${operator.firstName} via Http`);
     return this.http.post(this.taskLogUrl, task, this.options)
+      .do(response => this.logger.log(`Added to task log with ${JSON.stringify(response)}`))
+      .catch(error => this.handleError(error));
+  }
+
+  updateTaskLog(task: Task): Observable<any> {
+    let url = `${this.taskLogUrl}/${task.id}`;
+    this.logger.log(`Updating task log for ${JSON.stringify(task)} via Http`);
+    return this.http.put(url, task, this.options)
       .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))
       .catch(error => this.handleError(error));
   }
 
-  updateTaskLog(task: Task): Observable<any>{
-        this.logger.log(`Updating task log for ${task.id} via Http`);
-    return this.http.put(`${this.taskLogUrl}/${task.id}`, task, this.options)
-      .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))
-      .catch(error => this.handleError(error));
-  }
-
-  getTaskLog(): Observable<Task[]>{
-      return this.http.get(this.taskLogUrl)
+  getTaskLog(): Observable<Task[]> {
+    return this.http.get(this.taskLogUrl)
       .map(response => response.json().data as Task[])
       .do(taskLog => this.logger.log(`Got ${taskLog.length} task logs: ${JSON.stringify(taskLog)}`))
       .catch(error => this.handleError(error));

@@ -1,8 +1,8 @@
 <div class="col-sm-6">
   <div class="panel panel-default">
-    <div class="panel-heading">Tasks Log</div>
+    <div class="panel-heading">Tasks Log (Click entry to add comment)</div>
     <div class="panel-body">
-      <div class="row container" *ngFor="let task of taskLog; let i=index" (click)="openCommentModal(task)">
+      <div class="row container log-entry" *ngFor="let task of taskLog; let i=index" (click)="openCommentModal(task)">
         {{i+1}}. {{task.operator.firstName}} {{task.operator.lastName}}, {{task.operator.assignedTask}}, {{task.operator.assignedTower}},
         {{task.operator.taskStatus}}, {{task.operator.taskResult}}
       </div>
@@ -27,10 +27,12 @@
         <div>Result: {{selectedTask.operator.taskResult}}</div>
         <div>Status: {{selectedTask.operator.taskStatus}}</div>
         <div class="form-group">
-          <label>Comment:</label>
-          <textarea [(ngModel)]="comment" cols="30" rows="10" class="form-control">{{selectedTask.comment}}</textarea>
+          <label>Comment:</label><button class="btn btn-default pull-right" (click)="toggleEdit()">Add/Edit</button>
+          <textarea [(ngModel)]="comment" cols="30" rows="10" class="form-control" [disabled]="disableCommentEntry">{{selectedTask.comment}}</textarea>
         </div>
-        <div>{{comment}}</div>
+        <button class="btn btn-default" (keyup.enter)="hideCommentModal()" (click)="hideCommentModal()">
+          Done
+        </button>
       </div>
     </div>
   </div>
