@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { BsDropdownModule,
-          ModalModule } from "ngx-bootstrap";
+          ModalModule } from 'ngx-bootstrap';
 
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule,
-          MdToolbarModule } from "@angular/material";
-import { FlexLayoutModule } from "@angular/flex-layout";
+          MdToolbarModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -19,8 +19,8 @@ import { NavComponent } from './nav/nav.component';
 import { TaskService } from './task/task.service';
 import { ActiveTaskComponent } from './active-task/active-task.component';
 
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-import { InMemoryOperatorService } from "../in-memory-operator-service";
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryOperatorService } from '../in-memory-operator-service';
 import { LoggerService } from './logger/logger.service';
 import { TasksAssignedComponent } from './tasks-assigned/tasks-assigned.component';
 import { TaskLogComponent } from './task-log/task-log.component';

@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { TaskService } from '../task/task.service';
-import { Observable } from 'rxjs/Observable';
-import { Task } from '../task/task';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Observable } from 'rxjs/Observable';
+
 import { LoggerService } from 'app/logger/logger.service';
+import { TaskService } from '../task/task.service';
+
+import { Task } from '../task/task';
 
 @Component({
   selector: 'dd-task-log',
@@ -11,12 +13,14 @@ import { LoggerService } from 'app/logger/logger.service';
   styleUrls: ['./task-log.component.css']
 })
 export class TaskLogComponent implements OnInit {
+
 @Input() taskLog: Task[];
 @ViewChild('commentModal') public commentModal: ModalDirective;
-selectedTask: Task;
-comment= '';
+
 disableCommentEntry = true;
+selectedTask: Task;
 editClicked = false;
+comment= '';
 
   constructor(
     private taskService: TaskService,

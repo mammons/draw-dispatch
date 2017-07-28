@@ -1,5 +1,5 @@
-import { Task } from "../task/task";
-import { State } from "app/operator/state";
+import { State } from 'app/operator/state';
+import { Task } from '../task/task';
 
 export class Operator {
     operId: number;

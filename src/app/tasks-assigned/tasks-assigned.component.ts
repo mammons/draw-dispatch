@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Operator } from '../operator/operator';
 
 @Component({
@@ -6,13 +6,10 @@ import { Operator } from '../operator/operator';
   templateUrl: './tasks-assigned.component.html',
   styleUrls: ['./tasks-assigned.component.css']
 })
-export class TasksAssignedComponent implements OnInit {
+export class TasksAssignedComponent {
   @Input() operators: Operator[];
   currentlyActiveOperators: Operator[];
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

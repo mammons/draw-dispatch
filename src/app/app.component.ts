@@ -1,11 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { OperatorService } from './operator/operator.service';
+import { LoggerService } from 'app/logger/logger.service';
+import { TaskService } from 'app/task/task.service';
 import { Operator } from './operator/operator';
 import { State } from './operator/state';
 import { Task } from './task/task';
-import { LoggerService } from 'app/logger/logger.service';
-import { TaskService } from 'app/task/task.service';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
 
   getTaskData() {
     this.taskService.getTaskData()
-    .subscribe(
+      .subscribe(
       response => {
         this.tasks = response[0].tasks;
         this.taskResults = response[0].taskResults;

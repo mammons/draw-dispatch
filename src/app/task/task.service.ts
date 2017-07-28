@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import { Task } from './task';
 import { LoggerService } from '../logger/logger.service';
+
 import { Operator } from 'app/operator/operator';
+import { Task } from './task';
 
 @Injectable()
 export class TaskService {
@@ -13,7 +14,7 @@ export class TaskService {
   private taskResultsUrl = 'api/taskResults';
   private taskLogUrl = 'api/taskLog';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private options = new RequestOptions({ headers: this.headers })
+  private options = new RequestOptions({ headers: this.headers });
 
   constructor(
     private http: Http,
@@ -39,10 +40,10 @@ export class TaskService {
   }
 
   addTaskLog(operator: Operator): Observable<any> {
-    let task = {
+    const task = {
       operator: operator,
       comment: ''
-    }
+    };
     this.logger.log(`Adding task log for ${operator.firstName} via Http`);
     return this.http.post(this.taskLogUrl, task, this.options)
       .do(response => this.logger.log(`Added to task log with ${JSON.stringify(response)}`))
@@ -50,7 +51,7 @@ export class TaskService {
   }
 
   updateTaskLog(task: Task): Observable<any> {
-    let url = `${this.taskLogUrl}/${task.id}`;
+    const url = `${this.taskLogUrl}/${task.id}`;
     this.logger.log(`Updating task log for ${JSON.stringify(task)} via Http`);
     return this.http.put(url, task, this.options)
       .do(response => this.logger.log(`Updated task log with ${JSON.stringify(response)}`))

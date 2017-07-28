@@ -1,12 +1,14 @@
 import { Component, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Operator } from '../operator/operator';
-import { OperatorService } from '../operator/operator.service';
-import { Task } from '../task/task';
-import { LoggerService } from '../logger/logger.service';
-import { TaskService } from '../task/task.service';
-import { State } from '../operator/state';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs/Observable';
+
+import { OperatorService } from '../operator/operator.service';
+import { LoggerService } from '../logger/logger.service';
+import { TaskService } from '../task/task.service';
+
+import { Operator } from '../operator/operator';
+import { State } from '../operator/state';
+import { Task } from '../task/task';
 
 @Component({
   selector: 'dd-active-task',
