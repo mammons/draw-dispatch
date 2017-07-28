@@ -11,7 +11,6 @@ import { Task } from './task';
 @Injectable()
 export class TaskService {
   private tasksUrl = 'api/tasksJson';
-  private taskResultsUrl = 'api/taskResults';
   private taskLogUrl = 'api/taskLog';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private options = new RequestOptions({ headers: this.headers });
@@ -30,20 +29,8 @@ export class TaskService {
       .catch(error => this.handleError(error));
   }
 
-  getTaskResults(): Observable<any> {
-    this.logger.log('Getting all task results...');
-
-    return this.http.get(this.taskResultsUrl)
-      .map(response => response.json().data as string[])
-      .do(taskResults => this.logger.log(`Got ${taskResults.length} task results`))
-      .catch(error => this.handleError(error));
-  }
-
   addTaskLog(operator: Operator): Observable<any> {
-    const task = {
-      operator: operator,
-      comment: ''
-    };
+    const task = new Task(operator);
     this.logger.log(`Adding task log for ${operator.firstName} via Http`);
     return this.http.post(this.taskLogUrl, task, this.options)
       .do(response => this.logger.log(`Added to task log with ${JSON.stringify(response)}`))
@@ -61,7 +48,7 @@ export class TaskService {
   getTaskLog(): Observable<Task[]> {
     return this.http.get(this.taskLogUrl)
       .map(response => response.json().data as Task[])
-      .do(taskLog => this.logger.log(`Got ${taskLog.length} task logs: ${JSON.stringify(taskLog)}`))
+      // .do(taskLog => this.logger.log(`Got ${taskLog.length} task logs: ${JSON.stringify(taskLog)}`))
       .catch(error => this.handleError(error));
   }
 

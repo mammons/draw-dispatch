@@ -28,7 +28,7 @@
         <div>Status: {{selectedTask.operator.taskStatus}}</div>
         <div class="form-group">
           <label>Comment:</label><button class="btn btn-default pull-right" (click)="toggleEdit()">Add/Edit</button>
-          <textarea [(ngModel)]="comment" cols="30" rows="10" class="form-control" [disabled]="disableCommentEntry">{{selectedTask.comment}}</textarea>
+          <textarea [(ngModel)]="selectedTask.comment" cols="30" rows="10" class="form-control" [disabled]="disableCommentEntry">{{selectedTask.comment}}</textarea>
         </div>
         <button class="btn btn-default" (keyup.enter)="hideCommentModal()" (click)="hideCommentModal()">
           Done

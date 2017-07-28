@@ -20,7 +20,6 @@ export class TaskLogComponent implements OnInit {
 disableCommentEntry = true;
 selectedTask: Task;
 editClicked = false;
-comment= '';
 
   constructor(
     private taskService: TaskService,
@@ -41,7 +40,6 @@ comment= '';
   hideCommentModal() {
     this.commentModal.hide();
     this.disableCommentEntry = true;
-    this.selectedTask.comment = this.comment;
     this.saveComment();
   }
 

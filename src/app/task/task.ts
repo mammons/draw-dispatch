@@ -1,6 +1,8 @@
 import { Operator } from '../operator/operator';
 
 export class Task {
+
+
   static tasks = {
     none: 'None',
     cutAndSet: 'Cut & Set Ink',
@@ -36,7 +38,14 @@ export class Task {
     other: 'Other'
   };
 
+
   id: number;
   operator: Operator;
   comment: string;
+
+
+constructor(operator: Operator){
+  this.operator = operator;
+  this.comment = '';
+}
 }
