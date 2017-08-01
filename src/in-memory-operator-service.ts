@@ -1,10 +1,10 @@
-import { InMemoryDbService } from "angular-in-memory-web-api";
-import { State } from "./app/operator/state";
-import { Task } from "./app/task/task";
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { State } from './app/operator/state';
+import { Task } from './app/task/task';
 
 export class InMemoryOperatorService implements InMemoryDbService {
     createDb() {
-        let operators = [
+        const operators = [
             {
                 firstName: 'Anthony',
                 lastName: 'Aguilar',
@@ -173,7 +173,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
 
         ];
 
-        let tasksJson = [
+        const tasksJson = [
             {
                 tasks: [
                     'Cut & set ink',
@@ -284,7 +284,7 @@ export class InMemoryOperatorService implements InMemoryDbService {
             }
         ];
 
-        let taskLog = [
+        const taskLog = [
             // {operator:{
             //     firstName: 'Anthony',
             //     lastName: 'Aguilar',
