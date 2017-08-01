@@ -62,6 +62,7 @@ export class AppComponent implements OnInit {
   }
 
   updatePanels() {
+    // this.logger.log(`Operator Pool: ${JSON.stringify(this.operatorPool)}`);
     this.bullpenOperators = this.operatorPool.filter(bpOper => bpOper['state'] === State.bullpen);
     this.logger.log('Assigning bullpen operators based on state: ' + this.bullpenOperators);
 

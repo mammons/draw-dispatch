@@ -6,7 +6,7 @@
         <li *ngFor="let operator of activeTaskOperators">
           <div class="btn-group" dropdown>
             <button dropdownToggle type="button" id="{{operator.operId}}" class="btn btn-default dropdown-toggle">
-              {{operator.firstName}} {{operator.lastName}} ({{operator.assignedTask}}) <span class="caret"></span>
+              {{operator.firstName}} {{operator.lastName}} ({{operator.assignedTask}} <span *ngIf="operator.assignedTower != 'None'">on {{operator.assignedTower}}</span>)  <span class="caret"></span>
             </button>
             <ul *dropdownMenu class="dropdown-menu" role="menu">
               <li role="menuitem"><a class="dropdown-item" (click)="targetForCompleteTask(operator)">Complete Task</a></li>

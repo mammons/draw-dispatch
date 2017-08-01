@@ -33,7 +33,7 @@ editClicked = false;
 
   openCommentModal(task: Task) {
     this.selectedTask = task;
-    this.logger.log(`This is the task from the modal ${JSON.stringify(task)}`);
+    // this.logger.log(`This is the task from the modal ${JSON.stringify(task)}`);
     this.commentModal.show();
   }
 
